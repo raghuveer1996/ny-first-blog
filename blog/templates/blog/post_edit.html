@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Results</title>
+<style>
+select#p01
+{
+font-size:130%;
+color:#990033;
+}
+p#p01
+{
+font-size:160%;
+color:#990033;
+}
+p.size
+{
+font-size:160%;
+width:1000px;
+}
+h3#set
+{
+font-size:140%;
+}
+tr#tr01
+{
+font-size:130%;
+}
+h#h01
+{
+align = "right";
+font-size:375%;
+border-style: solid;
+}
+h3
+{
+align = "right";
+font-size:175%;
+}
+tr#tr02
+{
+font-size:175%;
+}
+button#b01
+{
+font-size:130%;
+}
+textarea#ta01
+{
+  font-size:150%;
+}
+</style>
+</head>
+<body>
+  <h3 id="date" align="right">Date : 10 June 2016</h3>
+  <center><h id = "h01">Release management</h></center>
+  <br></br>
+  <select id="p01" align="center">
+  <option value="0">Select Project</option>
+  <option value="1">Jio Now</option>
+  <option value="2">None</option>
+  <option value="3">None</option>
+</select>
+
+<h2><a href="/create">Add</a></h2>
+<table border=1 style="width:75%">
+  <tr id="tr02">
+    <th>Sprint</th>
+    <th>Technology</th>
+    <th>Version</th> 
+    <th>Release date</th>
+    <th>Release notes</th>
+    <th>Test Result</th>
+    <th>Remarks</th>
+  </tr>
+ 
+
+  {% for result in results %}
+    <tr id="tr01">
+      <td>{{ result.title }}</td>
+      <td>{{ result.technology }}</td>
+      <td>{{ result.Version }}</td>
+      <td>{{ result.release }}</td>
+      <td> <a href='{{ result.file1.url }}' download="file1">Excel file</a> </td>
+      <td> <a href='{{ result.file2.url }}' download="file2">Excel file</a> </td>
+      <td>{{ result.remarks }}</td>
+    </tr>
+  {% endfor %}
+
+
+
+
+</table>
+
+<br></br>
+<br></br>
+
+    <form method="POST" class="post-form">{% csrf_token %}
+       <p style : 'width:20px'> {{ form.text }} </p>
+        <button id = "b01" type="submit" class="save btn btn-default">Add Notification</button>
+    </form>
+
+
+
+
+<div>
+    <h1><a href="/">All Notifications</a></h1>
+</div>
+
+{% for post in posts %}
+    <div>
+        <h3 id="set">published: {{ post.published_date }}</h3>
+        <p id = "p01">{{ post.text }}</p>
+    </div>
+{% endfor %}
+
+<script>
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
+var d = new Date()
+document.getElementById("date").innerHTML = d.getDate() + " " + monthNames[d.getMonth()] + ", " + d.getFullYear();
+</script>
+
+
+</body>
+</html>

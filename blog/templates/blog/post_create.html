@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add</title>
+<style>
+p
+{
+font-size:150%;
+}
+button
+{
+font-size:150%;
+}
+</head>
+<body>
+</style>
+    <form method="POST" action='' enctype='multipart/form-data' class="post-form">{% csrf_token %}
+        {{ form.as_p }} 
+        <button type="submit" class="save btn btn-default">Add to table</button>
+    </form>
+
+<h2><a href="/">Click here to go to Home page</a></h2>
+</body>
+</html>
